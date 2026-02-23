@@ -17,8 +17,8 @@
         // }else{
         //     echo '<h1>HOME Page</h1>';    
         // }
-        $aviable_paegs = ['login','register','dashboard','logout'];
-        $logged_in_pages = ['dashboard'];
+        $aviable_pages = ['login','register','dashboard','logout','profile'];
+        $logged_in_pages = ['dashboard','profile'];
         $non_logged_in_pages = ['login','register'];
         
         $page = '';
@@ -31,7 +31,9 @@
         if(in_array($page, $non_logged_in_pages) && !empty(($user))){
             header("Location: ./?page=dashboard");
         }
-        if(in_array($page, $aviable_paegs)){
+
+        
+        if(in_array($page, $aviable_pages)){
             include './pages/' .$page. '.php';
         }else{
             header('Location: ./?page=dashboard'); // this will throw the query string to url(become to uri)

@@ -16,7 +16,15 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
                 </li> -->
-
+                <?php
+                if (isAdmin()) {
+                    ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= $baseURL ?>?page=user/list">User List</a>
+                    </li>
+                    <?php
+                }
+                ?>
 
                 <li class="nav-item dropdown">
 
@@ -33,12 +41,13 @@
                             <li><a class="dropdown-item" href="<?= $baseURL ?>?page=register">Register</a></li>
                         <?php } else {
                             ?>
-                            <li><a class="dropdown-item" href="./?page=profile">Profile</a></li> 
+                            <li><a class="dropdown-item" href="./?page=profile">Profile</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
                             <li><a class="dropdown-item" href="<?= $baseURL ?>?page=logout">Logout</a></li>
                             <?php
+
                         } ?>
                     </ul>
                 </li>

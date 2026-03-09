@@ -1,6 +1,7 @@
 <?php
     include './init/init.php';
     $user =loggedInUser() ;
+    $isAdmin = isAdmin() ;
     include $_SERVER['DOCUMENT_ROOT'] . '/G19BCSY3A/includes/header.inc.php'; //this absolute path
     include '/xampp/htdocs/g19bcsy3a/includes/navbar.inc.php'; //this is also absolute path
     
@@ -17,10 +18,10 @@
         // }else{
         //     echo '<h1>HOME Page</h1>';    
         // }
-        $aviable_pages = ['login','register','dashboard','logout','profile'];
+        $aviable_pages = ['login','register','dashboard','logout','profile','user/create','user/list'];
         $logged_in_pages = ['dashboard','profile'];
         $non_logged_in_pages = ['login','register'];
-        
+        $admin_pages = ['user/create','user/list'];
         $page = '';
         if(isset($_GET['page'])){
             $page = $_GET['page'];
@@ -34,6 +35,9 @@
 
         
         if(in_array($page, $aviable_pages)){
+            if(in_array($page, $admin_pages) && !$isAdmin){
+                header("Location: ./?page=dashboard");
+            }
             include './pages/' .$page. '.php';
         }else{
             header('Location: ./?page=dashboard'); // this will throw the query string to url(become to uri)

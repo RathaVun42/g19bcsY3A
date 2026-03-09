@@ -11,10 +11,10 @@
         return false;
     }
 
-    function userRegister($name, $username, $pass){
+    function userRegister($name, $username, $pass, $imagePath){
         global $con;
-        $query = $con->prepare("insert into tbl_user (name, username, passwd) values(?,?,?)");
-        $query->bind_param('sss',$name,$username,$pass);// the first s is for the first param that have data type as string
+        $query = $con->prepare("insert into tbl_user (name, username, passwd, image) values(?,?,?,?)");
+        $query->bind_param('ssss',$name,$username,$pass,$imagePath);// the first s is for the first param that have data type as string
         $query->execute();
         if($query->affected_rows){// this will check whether query can insert to db or not
             return true;
@@ -142,7 +142,10 @@ function changeProfileImage($image){
     $user = loggedInUser();
     $image_path = uploadImage($image);
     if($image_path && $user->image){
-        unlink($user->image);
+        if($user->image !== './assets/uploads/emptyuser.png'){
+            unlink($user->image);
+        }
+        
     }
     $query = $con->prepare('update tbl_user set image = ? where UserID = ?');
     $query->bind_param('sd',$image_path,$user->UserID);

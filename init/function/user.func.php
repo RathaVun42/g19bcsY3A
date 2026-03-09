@@ -14,4 +14,15 @@
         return false;
         
     }
+    function getUsers(){
+        global $con;
+        $query = $con->prepare("SELECT * FROM tbl_user WHERE level <> 'admin'"); // <> means is not
+        $query->execute();
+        $result = $query->get_result(); // get_result() will select all the record that are matched to the condition, but it is not object
+        if($result->num_rows){
+            return $result;
+        }else{
+            return null;
+        }
+    }
 ?>

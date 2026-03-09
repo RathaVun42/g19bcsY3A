@@ -31,7 +31,7 @@
             $usernameErr = "Please choose another username!";
         }
         if(empty($nameErr) && empty($usernameErr) && empty($passErr)){
-            if(userRegister($name, $username, $pass)){
+            if(userRegister($name, $username, $pass, null)){
                 echo '<div class="alert alert-success" role="alert">
                         Register successfully!
                     </div>';

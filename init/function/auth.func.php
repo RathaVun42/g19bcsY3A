@@ -72,7 +72,7 @@
         $result = $query->get_result();
         if($result->num_rows){
             return $result->fetch_object(); // can convert only one record to one object
-                                            // if result exists manu rows record, fetch_object will be failed
+                                            // if result exists many rows record, fetch_object will be failed
         }else{
             return null;
         }

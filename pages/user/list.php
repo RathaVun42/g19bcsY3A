@@ -1,5 +1,42 @@
-<?php
-echo "<h1>LIST USERS</h1>";
+<div class="container mt-5">
+    <div class="d-flex justify-content-between">
+        <h3>User list</h3>
+        <a href="./?page=user/create" role="button" class="btn btn-success">Create New</a>
+    </div>
+    <div class="table-responsive mt-5">
+        <table class="table table-info table-hover table-striped text-center align-middle">
+            <thead>
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>Photo</th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php 
+                    $user = getUsers();
+                    if($user){
+                        while($row = $user->fetch_object()){
+                            ?>
+                                <tr>
+                                    <td><?= $row->UserID ?></td>
+                                    <td><img src="<?php echo $row->image ?? './assets/uploads/emptyuser.png'?>" class="rounded img-thumbnail" style="max-width: 200px;"></td>
+                                    
+                                    <td><?= $row->Name ?></td>
+                                </tr>
+                            <?php
+                        }
+                    }
 
-?>
-<a href="<?= $baseURL ?>?page=user/create">Create User</a>
+                ?>
+
+            </tbody>
+            <tfoot>
+
+            </tfoot>
+        </table>
+    </div>
+
+</div>

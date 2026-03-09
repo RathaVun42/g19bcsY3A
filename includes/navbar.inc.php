@@ -20,7 +20,7 @@
                 if (isAdmin()) {
                     ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= $baseURL ?>?page=user/list">User List</a>
+                        <a class="nav-link" href="<?= $baseURL ?>?page=user/list" >User List</a>
                     </li>
                     <?php
                 }

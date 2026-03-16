@@ -25,4 +25,19 @@
             return null;
         }
     }
+    function readUser($id){
+        global $con;
+        $query = $con->prepare("SELECT * FROM tbl_user WHERE UserID = ?"); // <> means is not
+        $query->bind_param("i",$id);
+        $query->execute();
+        $result = $query->get_result(); // get_result() will select all the record that are matched to the condition, but it is not object
+        if($result->num_rows >0){
+            return $result->fetch_object();
+        }else{
+            return null;
+        }
+    }
+    function updateUser($name, $username, $pass, $photo ){
+
+    }
 ?>

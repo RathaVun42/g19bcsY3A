@@ -18,10 +18,14 @@
         // }else{
         //     echo '<h1>HOME Page</h1>';    
         // }
-        $aviable_pages = ['login','register','dashboard','logout','profile','user/create','user/list'];
-        $logged_in_pages = ['dashboard','profile'];
+        $admin_pages = ['user/create','user/list','user/update'];
         $non_logged_in_pages = ['login','register'];
-        $admin_pages = ['user/create','user/list'];
+        $logged_in_pages = ['dashboard','profile'];
+        $aviable_pages = [
+                        ...$non_logged_in_pages,
+                        'logout',
+                        ...$logged_in_pages,
+                        ...$admin_pages];
         $page = '';
         if(isset($_GET['page'])){
             $page = $_GET['page'];

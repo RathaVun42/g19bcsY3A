@@ -66,7 +66,7 @@ if (isset($_POST['deletePhoto'])){
 <div class="row">
     <div class="col-6 mt-auto me-auto">
         <form method="post" action="./?page=profile" enctype="multipart/form-data">
-            <div class="d-flex justify-content-center">
+            <div class="d-flex justify-content-center imgContainer">
                 <input name="photo" type="file" id="profileUpload" class="photo" hidden>
                 <label role="button" for="profileUpload">
                     <img src="<?php echo loggedInUser()->image ?? './assets/uploads/emptyuser.png'?>" class="rounded img-thumbnail" style="max-width: 200px;">

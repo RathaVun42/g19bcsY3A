@@ -37,7 +37,38 @@
             return null;
         }
     }
-    function updateUser($name, $username, $pass, $photo ){
-
+    function updateUser($id, $name, $username, $pass, $photo ){
+        global $con;
+        $user = readUser($id);
+        $photoPath = null;
+        if(!empty($photo['name'])){
+            $photoPath = uploadImage($photo);
+        }else{
+            $photoPath = $user->image ?? './assets/uploads/emptyuser.png';
+        }
+        if(!empty($user->image) && $user->image !== './assets/uploads/emptyuser.png'){
+            if(file_exists($user->image)){
+                unlink($user->image);
+            }
+        }
+        $query = $con->prepare("UPDATE `tbl_user` SET `Name`=?,`UserName`=?,`passwd`=?,`image`=? WHERE UserID = ?");
+        $query->bind_param("ssssi", $name, $username, $pass, $photoPath, $id);
+        $query->execute();
+        if($query->affected_rows){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    function deleteUser($id){
+        global $con;
+        $query = $con->prepare('DELETE FROM `tbl_user` WHERE UserID = ?');
+        $query->bind_param('i', $id);
+        $query->execute();
+        if($query->affected_rows){
+            return true;
+        }else{
+            return false;
+        }
     }
 ?>

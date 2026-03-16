@@ -18,7 +18,7 @@
         // }else{
         //     echo '<h1>HOME Page</h1>';    
         // }
-        $admin_pages = ['user/create','user/list','user/update'];
+        $admin_pages = ['user/create','user/list','user/update','user/delete'];
         $non_logged_in_pages = ['login','register'];
         $logged_in_pages = ['dashboard','profile'];
         $aviable_pages = [

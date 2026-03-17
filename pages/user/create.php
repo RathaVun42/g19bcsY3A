@@ -52,7 +52,7 @@ if (isset($_POST['name'], $_POST['username'], $_POST['pass'], $_FILES['photo']))
 ?>
 <form class="col-lg-5 col-sm-5 mx-auto" method="post" action="./?page=user/create" enctype="multipart/form-data">
     <h1>Create User</h1>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center imgContainer">
         <input name="photo" type="file" id="profileUpload" class="photo" hidden>
         <label role="button" for="profileUpload">
             <img src="./assets/uploads/emptyuser.png" class="rounded img-thumbnail" style="max-width: 200px;">

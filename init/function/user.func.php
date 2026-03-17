@@ -62,6 +62,10 @@
     }
     function deleteUser($id){
         global $con;
+        $user = readUser($id);
+        if(!empty($user->image)){
+            unlink($user->image);
+        }
         $query = $con->prepare('DELETE FROM `tbl_user` WHERE UserID = ?');
         $query->bind_param('i', $id);
         $query->execute();
